@@ -1,19 +1,49 @@
 // module.exports = function check(str, bracketsConfig) {
-//   // your solution
-// }
+// 	let sum = 0;
+// 	let up = [];
+// 	let down = [];
+// 	let squance = [];
+// 	let oper = false;
+// 	for (type of bracketsConfig){
+// 	  up.push(type[0]);
+// 	  down.push(type[1]);
+// 	};
+ 
+// 	for (let i = 0; i < str.length; i++){
+// 	  oper = false;
+// 	  if (up.indexOf(str[i]) !== -1) {
+// 		 if (up[up.indexOf(str[i])] === down[up.indexOf(str[i])]){
+// 			if (squance[squance.length - 1] === str[i]){
+// 			oper = false;
+// 			}else{
+// 			oper = true;
+// 			squance.push(down[up.indexOf(str[i])]);
+// 			sum++;   
+// 			};
+// 		 } else{
+// 		 squance.push(down[up.indexOf(str[i])]);
+// 		 sum++;
+// 		 }
+// 	  }
+// 	  if (down.indexOf(str[i]) !== -1 && !oper){
+// 		 sum--;
+// 		 if (sum < 0) {
+// 			return false;
+// 		 }
+// 		 if (squance[squance.length - 1] === str[i]) {
+// 			squance.splice(squance.length - 1, 1);
+// 		 }else{
+// 			return false;
+// 		 }
 
-// const config1 = [['(', ')']];
-// const config2 = [['(', ')'], ['[', ']']];
-// const config3 = [['(', ')'], ['[', ']'], ['{', '}']];
-// const config4 = [['|', '|']];
-// const config5 = [['(', ')'], ['|', '|']];
-// const config6 = [['1', '2'], ['3', '4'], ['5', '6'], ['7', '7'], ['8', '8']];
-// const config7 = [['(', ')'], ['[', ']'], ['{', '}'], ['|', '|']];
+// 	  }
 
-// let str = '111115611111111222288888822225577877778775555666677777777776622222'
 
-function check(str) {
+// 	}
+// 	return (sum === 0)? true: false;
+//  }
 
+module.exports = function check(str, bracketsConfig) {
 
 	function isClosedBrecket(ch) {
 		return [')', ']', '}', '2', '4', '6'].indexOf(ch) > -1; //проверяет является ли скобка закрывающей
@@ -42,7 +72,7 @@ function check(str) {
 			continue
 		} else if (current == '|' && count % 2 !== 0) {
 			if (current !== stack.pop())
-				return 'false'
+				return false
 			count += 1
 			continue
 		}
@@ -52,7 +82,7 @@ function check(str) {
 			continue
 		} else if (current == '7' && count7 % 2 !== 0) {
 			if (current !== stack.pop())
-				return 'false'
+				return false
 			count7 += 1
 			continue
 		}
@@ -62,14 +92,14 @@ function check(str) {
 			continue
 		} else if (current == '8' && count8 % 2 !== 0) {
 			if (current !== stack.pop())
-				return 'false'
+				return false
 			count8 += 1
 			continue
 		}
 		if (isClosedBrecket(current)) {
 
 			if (breckets[current] !== stack.pop())
-				return 'false'
+				return false
 
 		} else {
 			stack.push(current)
@@ -81,56 +111,3 @@ function check(str) {
 
 }
 
-console.log(check('([[[[(({{{}}}(([](((((((())))||||||))))[[{{|{{}}|}}[[[[]]]]{{{{{}}}}}]]))))]]]])((([[[[(({{{}}}(([](((((((())))||||||))))[[{{|{{}}|}}[[[[]]]]{{{{{}}}}}]]))))]]]])))'));
-
-
-
-// function check(str) {
-// 	let lineBrackets = [];
-// 	let y = [];
-// 	let x = [];
-// 	let stack = []
-// 	let brackets = {
-// 		')': '(',
-// 		'}': '{',
-// 		']': '[',
-// 		'5': '6',
-// 	}
-// 	if (str.length === 0) {
-// 		return false
-// 	}
-// 	for (let i = 0; i < str.length; i++) {
-// 		let current = str[i]
-// 		if (current === '|') {
-// 			lineBrackets.push(current)
-// 			continue;
-// 		} else if (current === '7') {
-// 			y.push(current);
-// 			console.log(y);
-// 			continue;
-// 		} else if (current === '8') {
-// 			x.push(current);
-// 			continue;
-// 		}
-// 		if (isClosedBracket(current)) {
-// 			if (brackets[current] !== stack.pop()) return false
-// 		} else {
-// 			stack.push(current);
-// 		}
-// 	}
-// 	console.log(stack);
-// 	console.log(lineBrackets)
-// 	if (lineBrackets.length === 0 && (y.length === 0 && x.length === 0)) {
-// 		return stack.length === 0;
-// 	} else if (lineBrackets.length % 2 === 0) {
-// 		return stack.length === 0;
-// 	} else if (y.length % 2 === 0 && x.length % 2 === 0) {
-// 		return stack.length === 0;
-// 	} return false
-// }
-
-// function isClosedBracket(ch) {
-// 	return [')', ']', '}', '6'].indexOf(ch) > -1;
-// }
-
-// console.log(check('7'));
