@@ -1,12 +1,9 @@
-
-
 module.exports = function check(str, bracketsConfig) {
 	let arrayCheck = bracketsConfig.map(x => x.join(''))
 	let i = 0;
 	while (i < arrayCheck.length) {
-	let current = arrayCheck[i]
-	if (str.includes(current)) {
-	str = str.replace(current, '');
+	if (str.includes(arrayCheck[i])) {
+	str = str.replace(arrayCheck[i], '');
 	i = 0;
 	} else i++;
 	}
